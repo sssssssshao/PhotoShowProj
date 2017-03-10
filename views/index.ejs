@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.js"></script>
     <style>
         .thumbnail img {
-            height: 200px;
+            height: 150px;
         }
 
         .thumbnail .caption {
@@ -43,7 +43,7 @@
 <div class="container">
     <div class="row">
         <% directoriesList.forEach(function (file) { %>
-        <div class="col-sm-6 col-md-4 col-xs-4">
+        <div class="col-sm-6 col-md-3 col-xs-3">
             <a class="thumbnail" href="?path=<%= file.path %>">
                 <img src="/images/directory.png" class="img-responsive">
                 <div class="caption">
@@ -54,7 +54,7 @@
         <% }) %>
 
         <% fileList.forEach(function (file) { %>
-        <div class="col-sm-6 col-md-4 col-xs-4">
+        <div class="col-sm-6 col-md-3 col-xs-3">
             <a class="thumbnail" href="/showImg?path=<%= file.path %>&chooseImg=<%= file.filename %>">
                 <img src="show?path=<%= file.path %>">
                 <div class="caption">

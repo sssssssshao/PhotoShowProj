@@ -25,17 +25,18 @@
     }
   ],
   /**
+   * pm2将node.js远程部署到服务器
    * Deployment section
    * PM2 - Deployment
    */
   "deploy": {
     "production": {
-      "user": "node",
-      "host": "212.83.163.1",
-      "ref": "origin/master",
-      "repo": "git@github.com:sssssssshao/PhotoShow.git",
-      "path": "/var/www/production",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+      "user": "sfy",//登录远程服务器的用户名，此处填写我们创建的yishi
+      "host": "10.211.55.4",//远程服务器的IP或hostname，此处可以是数组同步部署多个服务器，不过鉴于我们只有一个服务器，因此我们填写123.57.205.23
+      "ref": "origin/master",//远端名称及分支名，此处填写origin/master
+      "repo": "git@github.com:sssssssshao/PhotoShow.git",//git仓库地址，此处填写git@github.com:e10101/pm2app.git
+      "path": "c:\\zjjc",//远程服务器部署目录，需要填写user具备写入权限的目录，此处填写/home/yishi/www/production
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"//部署后需要执行的命令
     }
   }
 }
