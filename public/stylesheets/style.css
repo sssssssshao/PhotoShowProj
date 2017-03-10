@@ -1,0 +1,19 @@
+body {
+    padding-top: 60px;
+    background: black;
+}
+.caption p {
+    margin: 0px;
+}
+.navbar ol.breadcrumb {
+    margin: 0;
+    padding-bottom: 0;
+}
+.navbar.navbar-inverse ol.breadcrumb {
+    background-color: inherit;
+}
+.navbar.navbar-inverse ol.breadcrumb li, .navbar.navbar-inverse ol.breadcrumb li a {
+    color: white;
+    background-color: inherit;
+    border-color: inherit;
+}

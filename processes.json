@@ -1,0 +1,41 @@
+{
+  "apps": [
+    {
+      "name": "photoShow",
+      //名称
+      "script": "./bin/www",
+      //程序入库
+      "cwd": "./",
+      //根目录
+      "watch": [
+        "bin",
+        "common",
+        "configs",
+        "public",
+        "routes",
+        "views"
+      ],
+      //需要监控的目录
+      "error_file": "./logs/app-err.log",
+      //错误输出日志
+      "out_file": "./logs/app-out.log",
+      //日志
+      "log_date_format": "YYYY-MM-DD HH:mm Z"
+      //日期格式
+    }
+  ],
+  /**
+   * Deployment section
+   * PM2 - Deployment
+   */
+  "deploy": {
+    "production": {
+      "user": "node",
+      "host": "212.83.163.1",
+      "ref": "origin/master",
+      "repo": "git@github.com:sssssssshao/PhotoShow.git",
+      "path": "/var/www/production",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/plugins/bootstrap/css/bootstrap.css'/>
+    <script type="text/javascript" src="/javascripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.js"></script>
+    <style>
+        .thumbnail img {
+            height: 200px;
+        }
+
+        .thumbnail .caption {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header hidden-xs">
+        <a class="navbar-brand" href="/">首页</a>
+        <a class="navbar-brand" href="/setPath">设置</a>
+    </div>
+    <div class="container">
+        <ol class="breadcrumb">
+            <% pathList.forEach(function (path, index) {
+                var href = "javascript:;", className = "active";
+                if (index != (pathList.length - 1)) {
+                    href = "/?path=" + path.url;
+                    className = "";
+                }
+            %>
+            <li>
+                <a href="<%=href%>" class="btn btn-default path-btn <%=className%>" >
+                    <%= path.name %>
+                </a>
+            </li>
+            <% }) %>
+        </ol>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <% directoriesList.forEach(function (file) { %>
+        <div class="col-sm-6 col-md-4 col-xs-4">
+            <a class="thumbnail" href="?path=<%= file.path %>">
+                <img src="/images/directory.png" class="img-responsive">
+                <div class="caption">
+                    <p><%= file.filename %></p>
+                </div>
+            </a>
+        </div>
+        <% }) %>
+
+        <% fileList.forEach(function (file) { %>
+        <div class="col-sm-6 col-md-4 col-xs-4">
+            <a class="thumbnail" href="/showImg?path=<%= file.path %>&chooseImg=<%= file.filename %>">
+                <img src="show?path=<%= file.path %>">
+                <div class="caption">
+                    <p><%= file.filename %></p>
+                </div>
+            </a>
+        </div>
+        <% }) %>
+    </div>
+</div>
+</body>
+</html>

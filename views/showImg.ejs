@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/plugins/bootstrap/css/bootstrap.css'/>
+    <script type="text/javascript" src="/javascripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.js"></script>
+    <style>
+        .carousel-inner .item{
+            text-align: center;
+        }
+        .carousel-inner .item img {
+            display: inline-block;
+            max-height: 600px;
+        }
+        .carousel-indicators .active {
+            background-color: #333;
+        }
+        .carousel-indicators li {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header hidden-xs">
+        <a class="navbar-brand" href="/">首页</a>
+        <a class="navbar-brand" href="/setPath">设置</a>
+    </div>
+    <div class="container">
+        <ol class="breadcrumb">
+            <% pathList.forEach(function (path, index) {
+                var href = "javascript:;", className = "active";
+                if (index != (pathList.length - 1)) {
+                    href = "/?path=" + path.url;
+                    className = "";
+                }
+            %>
+            <li>
+                <a href="<%=href%>" class="btn btn-default path-btn <%=className%>" >
+                    <%= path.name %>
+                </a>
+            </li>
+            <% }) %>
+        </ol>
+    </div>
+</nav>
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <%
+            var itemActive = "";
+            fileList.forEach(function (file, index) {
+                if (chooseImg) {
+                    if (chooseImg == file.filename) {
+                        itemActive = "active";
+                    } else {
+                        itemActive = "";
+                    }
+                } else {
+                    if (!itemActive && index == 0) {
+                        itemActive = "active";
+                    } else {
+                        itemActive = "";
+                    }
+                }
+        %>
+            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="<%=itemActive%>"></li>
+        <%  })%>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <%
+            var itemActive = "";
+            fileList.forEach(function (file, index) {
+                if (chooseImg) {
+                    if (chooseImg == file.filename) {
+                        itemActive = "active";
+                    } else {
+                        itemActive = "";
+                    }
+                } else {
+                    if (!itemActive && index == 0) {
+                        itemActive = "active";
+                    } else {
+                        itemActive = "";
+                    }
+                }
+        %>
+            <div class="item <%=itemActive%>">
+                <img src="show?path=<%= file.path %>" alt="<%= file.filename %>" class="img-responsive"/>
+            </div>
+        <%  }) %>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="carousel-control left" href="#myCarousel"
+       data-slide="prev"></a>
+    <a class="carousel-control right" href="#myCarousel"
+       data-slide="next"></a>
+</div>
+<script>
+    $(function(){
+        $('#myCarousel').carousel({
+            interval: false
+        })
+    })
+</script>
+</body>
+</html>
