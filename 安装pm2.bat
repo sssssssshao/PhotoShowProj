@@ -1,1 +1,1 @@
-npm run pm2
+npm run pm2 -g
